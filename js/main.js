@@ -71,7 +71,11 @@ const openReservation = document.getElementById('openReservation');
 const openReservationBottom = document.getElementById('openReservationBottom');
 const modal = document.getElementById('reservationModal');
 const closeModal = document.getElementById('closeModal');
+const modalTitle = document.getElementById('modalTitle');
+const reservationFormPanel = document.getElementById('reservationFormPanel');
+const customRequestPanel = document.getElementById('customRequestPanel');
 const reservationForm = document.getElementById('reservationForm');
+const customRequestForm = document.getElementById('customRequestForm');
 const serviceSelect = reservationForm.querySelector('select[name="service"]');
 const corporateModal = document.getElementById('corporateModal');
 const closeCorporateModal = document.getElementById('closeCorporateModal');
@@ -142,31 +146,57 @@ langButtons.forEach((button) => {
   button.addEventListener('click', () => setLanguage(button.dataset.lang));
 });
 
-function openModal() {
+function showStandardReservationForm() {
+  reservationFormPanel.hidden = false;
+  customRequestPanel.hidden = true;
+  if (modalTitle) {
+    modalTitle.textContent = 'Rezervasyon Talebi';
+  }
+}
+
+function showCustomRequestForm() {
+  reservationFormPanel.hidden = true;
+  customRequestPanel.hidden = false;
+  if (modalTitle) {
+    modalTitle.textContent = 'Kendi Planınızı Oluşturun';
+  }
+}
+
+function openModal(mode = 'standard') {
   modal.classList.add('is-open');
   modal.setAttribute('aria-hidden', 'false');
+  if (mode === 'custom') {
+    showCustomRequestForm();
+  } else {
+    showStandardReservationForm();
+  }
 }
 
 function closeModalDialog() {
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
+  showStandardReservationForm();
 }
 
-openReservation.addEventListener('click', openModal);
-openReservationBottom.addEventListener('click', openModal);
+openReservation.addEventListener('click', () => openModal('standard'));
+openReservationBottom.addEventListener('click', () => openModal('standard'));
 
 const serviceCards = document.querySelectorAll('.service-card');
 serviceCards.forEach((card) => {
   const heading = card.querySelector('h3');
   const serviceName = heading ? heading.textContent.trim() : '';
   card.addEventListener('click', () => {
+    if (card.dataset.requestType === 'custom') {
+      openModal('custom');
+      return;
+    }
     if (serviceSelect && serviceName) {
       const option = Array.from(serviceSelect.options).find((opt) => opt.value === serviceName);
       if (option) {
         serviceSelect.value = option.value;
       }
     }
-    openModal();
+    openModal('standard');
   });
 });
 
@@ -231,6 +261,17 @@ reservationForm.addEventListener('submit', (event) => {
   text += `Yolcu:%20${encodeURIComponent(passengers)}%0A`;
   text += `Bagaj:%20${encodeURIComponent(baggage)}%0A`;
   text += `Not:%20${encodeURIComponent(note)}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${text}`;
+  window.open(whatsappUrl, '_blank');
+  closeModalDialog();
+});
+
+customRequestForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  const formData = new FormData(customRequestForm);
+  const message = formData.get('message').trim();
+  let text = 'Yeni%20Kendi%20Plan%20Talebi%0A%0A';
+  text += `İstek:%20${encodeURIComponent(message)}`;
   const whatsappUrl = `https://wa.me/${phoneNumber.replace(/\D/g, '')}?text=${text}`;
   window.open(whatsappUrl, '_blank');
   closeModalDialog();

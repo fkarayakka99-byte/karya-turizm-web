@@ -69,7 +69,7 @@
             <img src="assets/img/services/vip-sprinter.png" alt="VIP Sprinter Hizmeti" />
             <h3>VIP Sprinter Hizmeti</h3>
           </article>
-          <article class="card service-card">
+          <article class="card service-card" data-request-type="custom">
             <img src="assets/img/services/yacht-tour.png" alt="Yat ve Tekne Turu" />
             <h3>Yat ve Tekne Turu</h3>
           </article>
@@ -80,6 +80,10 @@
           <article class="card service-card">
             <img src="assets/img/services/premium-daily-chauffeur.png" alt="Premium Günlük Şoförlü Kiralama" />
             <h3>Premium Günlük Şoförlü Kiralama</h3>
+          </article>
+          <article class="card service-card" data-request-type="custom">
+            <img src="assets/img/services/premium-daily-chauffeur.png" alt="Kendi Planını Oluştur" />
+            <h3>Kendi Planını Oluştur</h3>
           </article>
           <article class="card service-card">
             <img src="assets/img/services/vip-event-transfer.png" alt="Özel Davet & VIP Eğlence Transferi" />
@@ -218,6 +222,17 @@
       <div class="modal-content">
         <h3 id="modalTitle">Rezervasyon Talebi</h3>
         <p>Hemen WhatsApp üzerinden iletişime geçin.</p>
+        <div id="customRequestPanel" hidden>
+          <p>İsteğinizi aşağıdaki alana yazın; birlikte uygun planı oluşturalım.</p>
+          <form id="customRequestForm">
+            <label>
+              İsteğiniz
+              <textarea name="message" placeholder="Tarih, şehir, araç, rota ve diğer detaylarınızı yazın..." rows="8" required></textarea>
+            </label>
+            <button class="btn btn-primary" type="submit">WhatsApp ile Gönder</button>
+          </form>
+        </div>
+        <div id="reservationFormPanel">
         <form id="reservationForm">
           <label>
             Ad Soyad
@@ -282,6 +297,7 @@
           </label>
           <button class="btn btn-primary" type="submit">WhatsApp ile Gönder</button>
         </form>
+        </div>
       </div>
     </div>
   </div>
