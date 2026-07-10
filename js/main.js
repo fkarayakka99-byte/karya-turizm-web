@@ -19,6 +19,10 @@ serviceCorporate: 'Kurumsal Transfer',
 serviceDaily: 'Premium Günlük Şoförlü Kiralama',
 serviceCustom: 'Kendi Planını Oluştur',
 serviceEvent: 'Özel Davet & VIP Eğlence Transferi',
+
+customModalTitle: 'Kendi Planınızı Oluşturun',
+sendWhatsapp: 'WhatsApp ile Gönder',
+
   },
  EN: {
   menu: ['Services', 'Fleet', 'Destinations', 'Experience'],
@@ -39,6 +43,11 @@ serviceEvent: 'Özel Davet & VIP Eğlence Transferi',
   serviceDaily: 'Premium Daily Chauffeur Service',
   serviceCustom: 'Create Your Own Plan',
   serviceEvent: 'Private Invitation & VIP Entertainment Transfer',
+  modalTitle: 'Booking Request',
+  customModalTitle: 'Create Your Own Plan',
+  sendWhatsapp: 'Send via WhatsApp',
+
+  
 },
   AR: {
   menu: ['الخدمات', 'الأسطول', 'الوجهات', 'التجربة'],
@@ -193,7 +202,9 @@ function showStandardReservationForm() {
   reservationFormPanel.hidden = false;
   customRequestPanel.hidden = true;
   if (modalTitle) {
-    modalTitle.textContent = 'Rezervasyon Talebi';
+    modalTitle.textContent = translations[
+  document.querySelector('.lang-switch button.active')?.dataset.lang || 'TR'
+].modalTitle;
   }
 }
 
@@ -201,7 +212,9 @@ function showCustomRequestForm() {
   reservationFormPanel.hidden = true;
   customRequestPanel.hidden = false;
   if (modalTitle) {
-    modalTitle.textContent = 'Kendi Planınızı Oluşturun';
+   modalTitle.textContent = translations[
+  document.querySelector('.lang-switch button.active')?.dataset.lang || 'TR'
+].customModalTitle;
   }
 }
 
