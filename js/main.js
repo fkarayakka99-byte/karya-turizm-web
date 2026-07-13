@@ -1,4 +1,4 @@
-const phoneNumber = '+905344346596';
+const phoneNumber = '+905462567135';
 const translations = {
   TR: {
     menu: ['Hizmetler', 'Filo', 'Destinasyonlar', 'Deneyim'],
