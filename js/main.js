@@ -160,6 +160,7 @@ const corporateContent = {
     body: `
       <p>Rezervasyon talepleri WhatsApp üzerinden ön talep niteliğindedir. Kesin rezervasyon, müsaitlik ve onay sürecinin tamamlanmasının ardından gerçekleşir.</p>
       <p>Fiyat, araç tipi ve hizmet detayları talebe göre netleşir ve müşteriye teyit edilir.</p>
+      <p><strong>Yasal Bilgilendirme:</strong> Hizmetlerimiz, Sevil Limousine Turizm Taşımacılık Ticaret Limited Şirketi iş birliğiyle sunulmaktadır. TÜRSAB Belge No: 16486.</p>
     `
   },
   kvkk: {
